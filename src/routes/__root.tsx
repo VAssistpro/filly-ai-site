@@ -84,11 +84,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Filly AI — The independent AI reservation assistant for Limo Anywhere operators" },
+      { title: "Filly AI — Turn booking requests into reservations, without the retyping" },
       {
         name: "description",
         content:
-          "Filly turns supported booking emails and PDFs from Gmail, Outlook, Front, and Helpwise into review-ready Limo Anywhere reservations.",
+          "Filly turns selected booking emails and documents from Gmail, Outlook, Front, and Helpwise into review-ready Limo Anywhere reservations—with the operator in control.",
       },
       { name: "author", content: "Filly AI" },
       { name: "theme-color", content: "#0A0A0F" },

@@ -1,4 +1,7 @@
+"use client";
+
 import { Link } from "@tanstack/react-router";
+import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 import {
   ArrowRight,
   BrainCircuit,
@@ -40,6 +43,40 @@ const workflow = [
     icon: FileCheck2,
   },
 ];
+
+function Reveal({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          node.dataset.visible = "true";
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.14, rootMargin: "0px 0px -8%" },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} data-reveal="true" style={{ "--reveal-delay": `${delay}ms` } as CSSProperties} className={className}>
+      {children}
+    </div>
+  );
+}
 
 const capabilities = [
   {
@@ -88,19 +125,19 @@ function Hero() {
     <section className="relative isolate overflow-hidden border-b border-border bg-noise">
       <div className="pointer-events-none absolute inset-0 grid-lines opacity-30" />
       <div className="mx-auto grid max-w-7xl gap-12 px-5 pb-16 pt-16 md:px-8 md:pb-24 md:pt-24 lg:grid-cols-[1fr_0.78fr] lg:items-center">
-        <div className="relative z-10">
+        <Reveal className="relative z-10">
+          <div>
           <p className="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-primary">
             Review-first reservation entry
           </p>
           <h1 className="mt-5 max-w-4xl text-balance font-display text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-gradient sm:text-6xl lg:text-7xl">
-            <span className="text-orange-gradient">Review, don&apos;t re-type.</span>
+            <span className="text-orange-gradient">Let Filly handle the retyping.</span>
           </h1>
           <p className="mt-6 max-w-2xl font-display text-2xl font-medium leading-tight text-foreground sm:text-3xl">
-            Filly reads the booking. You review the reservation.
+            From the first message to the final save, you stay in control.
           </p>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            You pick the booking. Filly shows you what it found, then fills the reservation in
-            front of you, checkpoint by checkpoint.
+            Choose the email or document. Filly extracts the trip, shows its work, and maps the supported fields into Limo Anywhere—one visible checkpoint at a time.
           </p>
 
           <div className="mt-8 grid max-w-2xl gap-px overflow-hidden border border-border bg-border sm:grid-cols-3">
@@ -131,9 +168,11 @@ function Hero() {
               See how it works
             </a>
           </div>
-        </div>
+          </div>
+        </Reveal>
 
-        <figure className="relative z-10 mx-auto w-full max-w-[430px] overflow-hidden rounded-lg border border-border-strong bg-[#2b2622] p-2 shadow-elev sm:p-3">
+        <Reveal className="relative z-10 mx-auto w-full max-w-[430px]" delay={140}>
+        <figure className="hero-depth relative overflow-hidden rounded-lg border border-border-strong bg-[#2b2622] p-2 shadow-elev sm:p-3">
           <div className="flex items-center justify-between border-b border-border px-3 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
             <span>Current extension</span>
             <span className="inline-flex items-center gap-2 text-emerald-400">
@@ -156,6 +195,7 @@ function Hero() {
             See each stage as Filly works, with pause and stop controls always within reach.
           </figcaption>
         </figure>
+        </Reveal>
       </div>
     </section>
   );
@@ -197,8 +237,9 @@ function Workflow() {
             </h2>
           </div>
           <div className="divide-y divide-border border-y border-border">
-            {workflow.map(({ number, title, body, icon: Icon }) => (
-              <article key={number} className="grid gap-4 py-7 sm:grid-cols-[48px_1fr] sm:gap-6">
+            {workflow.map(({ number, title, body, icon: Icon }, index) => (
+              <Reveal key={number} delay={index * 80}>
+              <article className="grid gap-4 py-7 sm:grid-cols-[48px_1fr] sm:gap-6">
                 <div className="flex h-12 w-12 items-center justify-center border border-primary/40 bg-primary/10 text-primary">
                   <Icon className="h-5 w-5" />
                 </div>
@@ -210,6 +251,7 @@ function Workflow() {
                   <p className="mt-2 max-w-2xl leading-relaxed text-muted-foreground">{body}</p>
                 </div>
               </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -332,13 +374,15 @@ function CapabilityGrid() {
           </Link>
         </div>
         <div className="mt-10 grid gap-px overflow-hidden border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
-          {capabilities.map(({ icon: Icon, title, body }) => (
-            <article key={title} className="bg-surface p-7 md:p-8">
+{capabilities.map(({ icon: Icon, title, body }, index) => (
+              <Reveal key={title} delay={index * 70}>
+              <article className="bg-surface p-7 md:p-8">
               <Icon className="h-6 w-6 text-primary" />
               <h3 className="mt-6 text-xl font-semibold text-foreground">{title}</h3>
               <p className="mt-3 leading-relaxed text-muted-foreground">{body}</p>
-            </article>
-          ))}
+              </article>
+              </Reveal>
+            ))}
         </div>
       </div>
     </section>
