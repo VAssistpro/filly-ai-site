@@ -44,7 +44,7 @@ export function SiteNav() {
             <li key={l.to}>
               <Link
                 to={l.to}
-                className="px-3 py-2 font-mono text-[12px] uppercase tracking-[0.12em] text-muted-foreground transition-colors hover:text-foreground"
+                className="rounded-full px-3 py-2 text-sm text-muted-foreground transition-all duration-200 hover:bg-surface hover:text-foreground"
                 activeProps={{ className: "text-foreground" }}
                 activeOptions={{ exact: l.to === "/" }}
               >
@@ -59,7 +59,7 @@ export function SiteNav() {
             href="mailto:support@getfillyai.com?subject=Filly%20pilot%20access"
             className="btn-glow inline-flex h-10 items-center rounded-md bg-primary px-5 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-px"
           >
-            Request pilot access
+            See Filly in action
           </a>
         </div>
 
@@ -94,7 +94,7 @@ export function SiteNav() {
                 href="mailto:support@getfillyai.com?subject=Filly%20pilot%20access"
                 className="block rounded-full bg-primary px-5 py-2.5 text-center text-sm font-semibold text-primary-foreground"
               >
-                Request pilot access
+                See Filly in action
               </a>
             </li>
           </ul>

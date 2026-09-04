@@ -93,14 +93,13 @@ function Hero() {
             Review-first reservation entry
           </p>
           <h1 className="mt-5 max-w-4xl text-balance font-display text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-gradient sm:text-6xl lg:text-7xl">
-            <span className="text-orange-gradient">Review, don&apos;t re-type.</span>
+            <span className="text-orange-gradient">Let Filly handle the retyping.</span>
           </h1>
           <p className="mt-6 max-w-2xl font-display text-2xl font-medium leading-tight text-foreground sm:text-3xl">
-            Filly reads the booking. You review the reservation.
+            From the first message to the final save, you stay in control.
           </p>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            You pick the booking. Filly shows you what it found, then fills the reservation in
-            front of you, checkpoint by checkpoint.
+            Choose the email or document. Filly extracts the trip, shows its work, and maps the supported fields into Limo Anywhere—one visible checkpoint at a time.
           </p>
 
           <div className="mt-8 grid max-w-2xl gap-px overflow-hidden border border-border bg-border sm:grid-cols-3">

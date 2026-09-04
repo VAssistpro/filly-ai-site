@@ -7,12 +7,12 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title: "Filly AI — Booking emails to review-ready Limo Anywhere reservations",
+        title: "Filly AI — Turn booking requests into reservations, without the retyping",
       },
       {
         name: "description",
         content:
-          "Filly turns selected booking emails and documents into review-ready Limo Anywhere reservations in about 35 seconds on average, including supported batch workflows.",
+          "Filly turns selected booking emails and documents into review-ready Limo Anywhere reservations, so dispatchers can spend less time retyping and more time handling the work that needs judgment.",
       },
       {
         property: "og:title",

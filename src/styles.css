@@ -50,28 +50,28 @@
   --radius: 0.5rem;
 
   /* Filly's product palette: warm ink, layered charcoal, exact coral accent. */
-  --background: #151311;
-  --foreground: #fffaf6;
+  --background: #0d0d0f;
+  --foreground: #f7f3ee;
 
-  --surface: #1d1917;
-  --surface-2: #27211e;
-  --surface-3: #352a25;
+  --surface: #151518;
+  --surface-2: #1d1d21;
+  --surface-3: #29282d;
 
   --card: #1d1917;
   --card-foreground: #fffaf6;
   --popover: #211c19;
   --popover-foreground: #fffaf6;
 
-  --primary: #de7857;
+  --primary: #d98b67;
   --primary-foreground: #17110f;
-  --primary-glow: #f08d6c;
+  --primary-glow: #f0b18a;
 
-  --gold: #d5a252;
+  --gold: #d6a66a;
 
   --secondary: #2b2421;
   --secondary-foreground: #fffaf6;
   --muted: #2b2421;
-  --muted-foreground: #b9aea8;
+  --muted-foreground: #aaa5a2;
   --accent: #de7857;
   --accent-foreground: #17110f;
   --destructive: oklch(0.65 0.22 25);
@@ -211,6 +211,17 @@
 
 .filly-scroll-orbit--reverse {
   animation-direction: reverse;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  main > section,
+  main > div > section {
+    animation: fadeUp 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  main > section:nth-child(2),
+  main > div > section:nth-child(2) { animation-delay: 90ms; }
+  main > section:nth-child(3),
+  main > div > section:nth-child(3) { animation-delay: 160ms; }
 }
 
 @media (prefers-reduced-motion: reduce) {
