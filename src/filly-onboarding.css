@@ -1,0 +1,1292 @@
+/*
+ * Lovable's Filly onboarding and toggle layer.
+ * Kept separate so the existing public-site design tokens remain unchanged.
+ */
+
+@theme inline {
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+}
+
+.filly-onboarding-page,
+.filly-toggle-page {
+  --background: oklch(0.976 0.006 80);
+  --foreground: oklch(0.24 0.012 60);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.24 0.012 60);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.24 0.012 60);
+  --primary: oklch(0.655 0.2 45);
+  --primary-foreground: oklch(0.99 0.008 80);
+  --secondary: oklch(0.952 0.008 80);
+  --secondary-foreground: oklch(0.28 0.012 60);
+  --muted: oklch(0.955 0.008 80);
+  --muted-foreground: oklch(0.52 0.015 65);
+  --accent: oklch(0.945 0.025 60);
+  --accent-foreground: oklch(0.3 0.05 45);
+  --border: oklch(0.9 0.01 75);
+  --input: oklch(0.9 0.01 75);
+  --ring: oklch(0.655 0.2 45);
+  --sidebar: oklch(0.97 0.008 80);
+  --sidebar-foreground: oklch(0.24 0.012 60);
+  color-scheme: light;
+}
+
+.dark .filly-onboarding-page,
+.dark .filly-toggle-page,
+.filly-toggle-page .dark {
+  --background: oklch(0.205 0.006 60);
+  --foreground: oklch(0.962 0.005 80);
+  --card: oklch(0.247 0.007 60);
+  --card-foreground: oklch(0.962 0.005 80);
+  --popover: oklch(0.247 0.007 60);
+  --popover-foreground: oklch(0.962 0.005 80);
+  --primary: oklch(0.685 0.2 45);
+  --primary-foreground: oklch(0.16 0.02 50);
+  --secondary: oklch(0.29 0.008 60);
+  --secondary-foreground: oklch(0.962 0.005 80);
+  --muted: oklch(0.29 0.008 60);
+  --muted-foreground: oklch(0.72 0.012 70);
+  --accent: oklch(0.33 0.025 55);
+  --accent-foreground: oklch(0.93 0.03 60);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.685 0.2 45);
+  --sidebar: oklch(0.225 0.006 60);
+  --sidebar-foreground: oklch(0.962 0.005 80);
+  color-scheme: dark;
+}
+
+:root {
+  --neu-bg: oklch(0.9 0.003 90);
+  --neu-bezel: linear-gradient(145deg, oklch(0.97 0.004 95), oklch(0.87 0.004 95));
+  --neu-well: linear-gradient(150deg, oklch(0.93 0.007 92) 0%, oklch(0.985 0.006 95) 55%, oklch(0.96 0.006 95) 100%);
+  --neu-well-on: linear-gradient(150deg, oklch(0.86 0.09 62) 0%, oklch(0.94 0.06 66) 60%, oklch(0.98 0.03 70) 100%);
+  --neu-well-night: linear-gradient(150deg, oklch(0.32 0.05 265) 0%, oklch(0.4 0.06 265) 60%, oklch(0.46 0.05 265) 100%);
+  --neu-knob: linear-gradient(160deg, oklch(0.995 0.002 95) 0%, oklch(0.94 0.004 95) 60%, oklch(0.9 0.005 95) 100%);
+  --neu-rim: oklch(0.45 0.01 90 / 0.55);
+  --neu-shadow-out:
+    0 1px 1px oklch(0.99 0 0 / 0.9) inset,
+    0 -1px 1px oklch(0.4 0.01 90 / 0.12) inset,
+    0.5rem 0.75rem 1.5rem oklch(0.35 0.01 90 / 0.28),
+    -0.3rem -0.4rem 1rem oklch(1 0 0 / 0.75);
+  --neu-shadow-well:
+    0 0.28rem 0.55rem oklch(0.3 0.01 90 / 0.42) inset,
+    0 -0.25rem 0.5rem oklch(1 0 0 / 0.85) inset,
+    0.3rem 0 0.6rem oklch(0.3 0.01 90 / 0.18) inset;
+  --neu-shadow-knob:
+    0 0.1rem 0.2rem oklch(1 0 0 / 0.95) inset,
+    0 -0.15rem 0.3rem oklch(0.4 0.01 90 / 0.16) inset,
+    0.25rem 0.4rem 0.8rem oklch(0.3 0.01 90 / 0.38),
+    -0.15rem -0.2rem 0.5rem oklch(1 0 0 / 0.7);
+}
+
+.dark {
+  --neu-bg: oklch(0.26 0.008 265);
+  --neu-bezel: linear-gradient(145deg, oklch(0.33 0.01 265), oklch(0.21 0.008 265));
+  --neu-well: linear-gradient(150deg, oklch(0.17 0.008 265) 0%, oklch(0.25 0.01 265) 60%, oklch(0.22 0.01 265) 100%);
+  --neu-well-on: linear-gradient(150deg, oklch(0.42 0.1 62) 0%, oklch(0.58 0.13 66) 60%, oklch(0.66 0.13 70) 100%);
+  --neu-well-night: linear-gradient(150deg, oklch(0.2 0.03 265) 0%, oklch(0.26 0.04 265) 60%, oklch(0.3 0.04 265) 100%);
+  --neu-knob: linear-gradient(160deg, oklch(0.4 0.012 265) 0%, oklch(0.3 0.01 265) 60%, oklch(0.24 0.01 265) 100%);
+  --neu-rim: oklch(0.08 0.01 265 / 0.8);
+  --neu-shadow-out:
+    0 1px 1px oklch(0.6 0.02 265 / 0.35) inset,
+    0 -1px 1px oklch(0 0 0 / 0.5) inset,
+    0.5rem 0.75rem 1.5rem oklch(0 0 0 / 0.6),
+    -0.3rem -0.4rem 1rem oklch(0.55 0.02 265 / 0.18);
+  --neu-shadow-well:
+    0 0.28rem 0.55rem oklch(0 0 0 / 0.75) inset,
+    0 -0.25rem 0.5rem oklch(0.6 0.02 265 / 0.22) inset,
+    0.3rem 0 0.6rem oklch(0 0 0 / 0.45) inset;
+  --neu-shadow-knob:
+    0 0.1rem 0.2rem oklch(0.7 0.02 265 / 0.35) inset,
+    0 -0.15rem 0.3rem oklch(0 0 0 / 0.5) inset,
+    0.25rem 0.4rem 0.8rem oklch(0 0 0 / 0.65),
+    -0.15rem -0.2rem 0.5rem oklch(0.55 0.02 265 / 0.15);
+}
+
+/* ── Neumorphic toggle ─────────────────────────────────────── */
+@utility neu-surface {
+  background: var(--neu-bg);
+}
+
+.neu-switch {
+  --nsw: 8.25rem;
+  --nsh: 4.5rem;
+  --nsp: 0.34rem;
+  position: relative;
+  display: inline-block;
+  width: var(--nsw);
+  height: var(--nsh);
+  padding: var(--nsp);
+  border: 0;
+  border-radius: 999px;
+  background: var(--neu-bezel);
+  box-shadow: var(--neu-shadow-out);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: box-shadow 0.35s ease, transform 0.2s ease;
+}
+
+.neu-switch:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 4px;
+}
+
+.neu-switch:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.neu-switch:not(:disabled):active {
+  transform: translateY(1px) scale(0.995);
+}
+
+.neu-switch-well {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--neu-well);
+  box-shadow: var(--neu-shadow-well);
+  border-top: 1px solid var(--neu-rim);
+  border-left: 1px solid var(--neu-rim);
+  overflow: hidden;
+  transition: background 0.45s ease;
+}
+
+.neu-switch.is-on .neu-switch-well {
+  background: var(--neu-well-on);
+}
+
+.neu-switch-knob {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: calc(var(--nsh) - var(--nsp) * 2);
+  height: calc(var(--nsh) - var(--nsp) * 2);
+  border-radius: 999px;
+  background: var(--neu-knob);
+  box-shadow: var(--neu-shadow-knob);
+  transform: translate(0, -50%);
+  transition: transform 0.42s cubic-bezier(0.34, 1.3, 0.5, 1);
+  z-index: 2;
+}
+
+.neu-switch.is-on .neu-switch-knob {
+  transform: translate(calc(var(--nsw) - var(--nsh)), -50%);
+}
+
+/* ON / OFF labels inside the recessed well.
+   The active-state label sits on the empty side of the track;
+   the inactive label is hidden underneath the raised knob. */
+.neu-switch-labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.neu-switch-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: calc(var(--nsh) * 0.24);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: oklch(0.35 0.02 90 / 0.88);
+  text-shadow:
+    0 1px 0 oklch(1 0 0 / 0.75),
+    0 -1px 0 oklch(0.3 0.01 90 / 0.18);
+  transition: color 0.35s ease, opacity 0.35s ease;
+}
+
+/* OFF label on the right side (visible when knob is left) */
+.neu-switch-label-off {
+  right: calc(var(--nsh) * 0.22);
+}
+
+/* ON label on the left side (visible when knob is right) */
+.neu-switch-label-on {
+  left: calc(var(--nsh) * 0.22);
+}
+
+.dark .neu-switch-label {
+  color: oklch(0.9 0.015 265 / 0.9);
+  text-shadow:
+    0 1px 1px oklch(0 0 0 / 0.55),
+    0 -1px 0 oklch(0.7 0.02 265 / 0.25);
+}
+
+/* ON label reads against the warm "on" track */
+.neu-switch.is-on .neu-switch-label-on {
+  color: oklch(0.32 0.09 50 / 0.95);
+  text-shadow:
+    0 1px 0 oklch(1 0 0 / 0.45),
+    0 -1px 0 oklch(0.3 0.05 50 / 0.2);
+}
+
+.dark .neu-switch.is-on .neu-switch-label-on {
+  color: oklch(0.98 0.07 65 / 0.98);
+  text-shadow:
+    0 1px 2px oklch(0 0 0 / 0.45),
+    0 -1px 1px oklch(0.3 0.04 60 / 0.25);
+}
+
+/* hide the label currently sitting underneath the knob */
+.neu-switch.is-on .neu-switch-label-off,
+.neu-switch:not(.is-on) .neu-switch-label-on {
+  opacity: 0;
+}
+
+.neu-switch-sm {
+  --nsw: 5.5rem;
+  --nsh: 3rem;
+  --nsp: 0.26rem;
+}
+
+.neu-switch-sm .neu-switch-label {
+  font-size: calc(var(--nsh) * 0.2);
+  letter-spacing: 0.03em;
+}
+
+.neu-switch-sm .neu-switch-label-off {
+  right: calc(var(--nsh) * 0.18);
+}
+
+.neu-switch-sm .neu-switch-label-on {
+  left: calc(var(--nsh) * 0.18);
+}
+
+/* icons sitting inside the recessed well */
+.neu-switch-icons {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 calc(var(--nsh) * 0.26);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.neu-switch-icon {
+  width: calc(var(--nsh) * 0.42);
+  height: calc(var(--nsh) * 0.42);
+  color: oklch(0.32 0.02 80 / 0.85);
+  filter: drop-shadow(0 1px 0 oklch(1 0 0 / 0.65));
+  transition: color 0.35s ease, opacity 0.35s ease;
+}
+
+.dark .neu-switch-icon {
+  color: oklch(0.98 0.01 265 / 0.9);
+  filter: drop-shadow(0 1px 1px oklch(0 0 0 / 0.55));
+}
+
+/* hide whichever icon sits underneath the knob */
+.neu-switch.is-on .neu-switch-icon:last-child,
+.neu-switch:not(.is-on) .neu-switch-icon:first-child {
+  opacity: 0;
+}
+
+.neu-switch-knob {
+  z-index: 2;
+}
+
+/* ── Vertical neumorphic theme toggle ────────────────────────── */
+.neu-switch-v {
+  --nsv-w: 3.25rem;
+  --nsv-h: 8.25rem;
+  --nsv-pad: 0.35rem;
+  --nsv-knob: calc(var(--nsv-w) - var(--nsv-pad) * 2);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.neu-switch-v:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 4px;
+}
+
+.neu-switch-v:not(:disabled):active .neu-switch-v-knob {
+  transform: translate(-50%, -50%) scale(0.96);
+}
+
+.neu-switch-v-well {
+  position: relative;
+  width: var(--nsv-w);
+  height: var(--nsv-h);
+  border-radius: 999px;
+  background: var(--neu-bezel);
+  box-shadow: var(--neu-shadow-out);
+  padding: var(--nsv-pad);
+}
+
+.neu-switch-v-track {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--neu-well);
+  box-shadow: var(--neu-shadow-well);
+  border-top: 1px solid var(--neu-rim);
+  border-left: 1px solid var(--neu-rim);
+  padding: 0.85rem 0;
+  overflow: hidden;
+  transition: background 0.45s ease;
+}
+
+.neu-switch-v.is-on .neu-switch-v-track {
+  background: var(--neu-well-night);
+}
+
+.neu-switch-v-bg-icon {
+  width: 1.35rem;
+  height: 1.35rem;
+  color: var(--muted-foreground);
+  opacity: 0.35;
+  transition: opacity 0.35s ease, color 0.35s ease;
+}
+
+.neu-switch-v.is-on .neu-switch-v-bg-icon:first-child,
+.neu-switch-v:not(.is-on) .neu-switch-v-bg-icon:last-child {
+  opacity: 0.15;
+}
+
+.neu-switch-v-knob {
+  position: absolute;
+  top: var(--nsv-pad);
+  left: 50%;
+  width: var(--nsv-knob);
+  height: var(--nsv-knob);
+  border-radius: 999px;
+  background: var(--neu-knob);
+  box-shadow: var(--neu-shadow-knob);
+  transform: translate(-50%, 0);
+  transition: transform 0.45s cubic-bezier(0.34, 1.35, 0.5, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.neu-switch-v.is-on .neu-switch-v-knob {
+  transform: translate(-50%, calc(var(--nsv-h) - var(--nsv-knob) - var(--nsv-pad) * 2));
+}
+
+.neu-switch-v-knob-icon {
+  width: 1.35rem;
+  height: 1.35rem;
+  color: oklch(0.55 0.12 60);
+  filter: drop-shadow(0 0 6px oklch(0.65 0.12 60 / 0.45));
+  transition: color 0.35s ease, filter 0.35s ease;
+}
+
+.dark .neu-switch-v-knob-icon {
+  color: oklch(0.75 0.08 265);
+  filter: drop-shadow(0 0 6px oklch(0.65 0.1 265 / 0.55));
+}
+
+.neu-switch-v-labels {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  height: var(--nsv-h);
+  padding: 0.35rem 0;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  opacity: 0.7;
+}
+
+.neu-switch-v-labels span {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+
+@media (min-width: 640px) {
+  .neu-switch-v-labels {
+    display: flex;
+  }
+}
+
+/* ── Horizontal neumorphic theme toggle ───────────────────────── */
+.neu-switch-h {
+  --nsh-w: 8.25rem;
+  --nsh-h: 3.25rem;
+  --nsh-pad: 0.35rem;
+  --nsh-inset: 0.2rem;
+  --nsh-knob: calc(var(--nsh-h) - (var(--nsh-pad) + var(--nsh-inset)) * 2);
+  --nsh-travel: calc(var(--nsh-w) - var(--nsh-knob) - (var(--nsh-pad) + var(--nsh-inset)) * 2);
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.neu-switch-h:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 4px;
+}
+
+.neu-switch-h:not(:disabled):active .neu-switch-h-knob {
+  transform: translate(0, -50%) scale(0.96);
+}
+
+.neu-switch-h.is-on:not(:disabled):active .neu-switch-h-knob {
+  transform: translate(var(--nsh-travel), -50%) scale(0.96);
+}
+
+.neu-switch-h-well {
+  position: relative;
+  width: var(--nsh-w);
+  height: var(--nsh-h);
+  border-radius: 999px;
+  background: var(--neu-bezel);
+  box-shadow: var(--neu-shadow-out);
+  padding: var(--nsh-pad);
+}
+
+.neu-switch-h-track {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--neu-well);
+  box-shadow: var(--neu-shadow-well);
+  border-top: 1px solid var(--neu-rim);
+  border-left: 1px solid var(--neu-rim);
+  padding: 0 0.85rem;
+  overflow: hidden;
+  transition: background 0.45s ease;
+}
+
+.neu-switch-h.is-on .neu-switch-h-track {
+  background: var(--neu-well-night);
+}
+
+.neu-switch-h-bg-icon {
+  width: 1.35rem;
+  height: 1.35rem;
+  color: var(--muted-foreground);
+  opacity: 0.35;
+  transition: opacity 0.35s ease, color 0.35s ease;
+}
+
+.neu-switch-h.is-on .neu-switch-h-bg-icon {
+  color: oklch(0.92 0.02 265);
+}
+
+.neu-switch-h.is-on .neu-switch-h-bg-icon:first-child,
+.neu-switch-h:not(.is-on) .neu-switch-h-bg-icon:last-child {
+  opacity: 0.15;
+}
+
+.neu-switch-h-knob {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--nsh-pad) + var(--nsh-inset));
+  width: var(--nsh-knob);
+  height: var(--nsh-knob);
+  border-radius: 999px;
+  background: var(--neu-knob);
+  box-shadow: var(--neu-shadow-knob);
+  transform: translate(0, -50%);
+  transition: transform 0.45s cubic-bezier(0.34, 1.35, 0.5, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.neu-switch-h.is-on .neu-switch-h-knob {
+  transform: translate(var(--nsh-travel), -50%);
+}
+
+.neu-switch-h-knob-icon {
+  width: 1.35rem;
+  height: 1.35rem;
+  color: oklch(0.55 0.12 60);
+  filter: drop-shadow(0 0 6px oklch(0.65 0.12 60 / 0.45));
+  transition: color 0.35s ease, filter 0.35s ease;
+}
+
+.dark .neu-switch-h-knob-icon {
+  color: oklch(0.75 0.08 265);
+  filter: drop-shadow(0 0 6px oklch(0.65 0.1 265 / 0.55));
+}
+
+.neu-switch-h-labels {
+  display: none;
+  justify-content: space-between;
+  width: var(--nsh-w);
+  padding: 0 0.35rem;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  opacity: 0.7;
+}
+
+@media (min-width: 640px) {
+  .neu-switch-h-labels {
+    display: flex;
+  }
+}
+
+/* ── Filly onboarding ──────────────────────────────────────── */
+@theme inline {
+  --color-on-hero: var(--filly-on-hero);
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --filly-on-hero: oklch(0.995 0.005 80);
+  --filly-hero: linear-gradient(150deg, oklch(0.72 0.17 48) 0%, oklch(0.655 0.2 45) 55%, oklch(0.6 0.19 38) 100%);
+  --filly-glow: 0 1.5rem 3.5rem -1.5rem oklch(0.6 0.19 42 / 0.55);
+  --filly-frame-shadow: 0 2rem 5rem -1.5rem oklch(0.3 0.03 60 / 0.35);
+}
+
+.dark {
+  --filly-on-hero: oklch(0.995 0.005 80);
+  --filly-hero: linear-gradient(150deg, oklch(0.66 0.16 48) 0%, oklch(0.6 0.18 44) 55%, oklch(0.5 0.15 38) 100%);
+  --filly-glow: 0 1.5rem 3.5rem -1.5rem oklch(0.55 0.18 42 / 0.45);
+  --filly-frame-shadow: 0 2rem 5rem -1.5rem oklch(0 0 0 / 0.6);
+}
+
+.filly-frame {
+  box-shadow: var(--filly-frame-shadow);
+}
+
+.filly-hero {
+  color: var(--filly-on-hero);
+  background: var(--filly-hero);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* slow drifting light across the hero */
+.filly-hero::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(
+    38% 38% at 30% 25%,
+    oklch(1 0 0 / 0.28) 0%,
+    transparent 70%
+  );
+  animation: filly-drift 14s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* concentric arcs, echoing the reference */
+.filly-hero::after {
+  content: "";
+  position: absolute;
+  right: -30%;
+  bottom: -55%;
+  width: 120%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid oklch(1 0 0 / 0.22);
+  box-shadow:
+    inset 0 0 0 3rem oklch(1 0 0 / 0.05),
+    0 0 0 4rem oklch(1 0 0 / 0.04);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.filly-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes filly-drift {
+  0% { transform: translate3d(-4%, -3%, 0) scale(1); }
+  100% { transform: translate3d(6%, 5%, 0) scale(1.12); }
+}
+
+/* staggered entrance */
+@keyframes filly-rise {
+  from { opacity: 0; transform: translate3d(0, 14px, 0); }
+  to { opacity: 1; transform: none; }
+}
+
+.filly-rise {
+  opacity: 0;
+  animation: filly-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.filly-d1 { animation-delay: 0.05s; }
+.filly-d2 { animation-delay: 0.14s; }
+.filly-d3 { animation-delay: 0.23s; }
+.filly-d4 { animation-delay: 0.32s; }
+.filly-d5 { animation-delay: 0.41s; }
+.filly-d6 { animation-delay: 0.5s; }
+
+/* slide swap */
+@keyframes filly-slide-in {
+  from { opacity: 0; transform: translate3d(18px, 0, 0); }
+  to { opacity: 1; transform: none; }
+}
+
+.filly-slide {
+  animation: filly-slide-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* live status dot */
+@keyframes filly-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.72 0.18 150 / 0.55); }
+  70% { box-shadow: 0 0 0 0.4rem oklch(0.72 0.18 150 / 0); }
+}
+
+.filly-dot {
+  animation: filly-pulse 2.4s ease-out infinite;
+}
+
+/* sheen sweep on the primary CTA */
+.filly-cta {
+  position: relative;
+  overflow: hidden;
+}
+
+.filly-cta::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 45%;
+  left: -60%;
+  background: linear-gradient(100deg, transparent, oklch(1 0 0 / 0.28), transparent);
+  transform: skewX(-18deg);
+  transition: left 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.filly-cta:hover::after {
+  left: 120%;
+}
+
+/* progress rail */
+.filly-rail-fill {
+  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filly-rise,
+  .filly-slide,
+  .filly-hero::before,
+  .filly-dot {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+
+
+.filly-hero [class*="text-on-hero"] {
+  color: color-mix(in oklab, var(--filly-on-hero) 85%, transparent);
+}
+
+.filly-hero, .filly-hero h1, .filly-hero h2, .filly-hero h3, .filly-hero p, .filly-hero span {
+  color: var(--filly-on-hero) !important;
+}
+.filly-hero [class*="text-on-hero"] {
+  color: color-mix(in oklab, var(--filly-on-hero) 85%, transparent) !important;
+}
+
+/* ── Mono pill theme toggle (high-contrast, cut-out icon) ───────────── */
+.neu-switch-m {
+  --nsm-h: 2.5rem;
+  --nsm-w: 4.85rem;
+  --nsm-pad: 0.3rem;
+  --nsm-ink: oklch(0.16 0.01 260);
+  --nsm-paper: oklch(0.99 0 0);
+  /* one shared motion contract for every state and both themes */
+  --nsm-dur: 420ms;
+  --nsm-ease: cubic-bezier(0.34, 1.35, 0.36, 1);
+  --nsm-dur-fade: 200ms;
+  --nsm-ease-fade: cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: 999px;
+  -webkit-tap-highlight-color: transparent;
+}
+.dark .neu-switch-m {
+  --nsm-ink: oklch(0.96 0.005 260);
+  --nsm-paper: oklch(0.18 0.015 265);
+}
+.neu-switch-m:focus-visible {
+  outline: 2px solid var(--nsm-ink);
+  outline-offset: 3px;
+}
+.neu-switch-m-track {
+  position: relative;
+  display: block;
+  height: var(--nsm-h);
+  width: var(--nsm-w);
+  border-radius: 999px;
+  background: var(--nsm-ink);
+  transition: background var(--nsm-dur) var(--nsm-ease-fade);
+}
+.neu-switch-m-icon {
+  position: absolute;
+  top: 50%;
+  height: calc(var(--nsm-h) - 2 * var(--nsm-pad) - 0.35rem);
+  width: calc(var(--nsm-h) - 2 * var(--nsm-pad) - 0.35rem);
+  transform: translateY(-50%);
+  color: var(--nsm-paper);
+  transition:
+    opacity var(--nsm-dur-fade) var(--nsm-ease-fade),
+    transform var(--nsm-dur) var(--nsm-ease);
+}
+.neu-switch-m-icon-sun {
+  left: calc(var(--nsm-pad) + 0.18rem);
+}
+.neu-switch-m-icon-moon {
+  right: calc(var(--nsm-pad) + 0.18rem);
+}
+.neu-switch-m:not(.is-on) .neu-switch-m-icon-moon,
+.neu-switch-m.is-on .neu-switch-m-icon-sun {
+  opacity: 0;
+  transform: translateY(-50%) scale(0.6);
+}
+.neu-switch-m-knob {
+  position: absolute;
+  top: var(--nsm-pad);
+  left: var(--nsm-pad);
+  height: calc(var(--nsm-h) - 2 * var(--nsm-pad));
+  width: calc(var(--nsm-h) - 2 * var(--nsm-pad));
+  border-radius: 999px;
+  background: var(--nsm-paper);
+  will-change: transform;
+  transform: translateX(calc(var(--nsm-w) - var(--nsm-h)));
+  transition:
+    transform var(--nsm-dur) var(--nsm-ease),
+    width var(--nsm-dur-fade) var(--nsm-ease-fade),
+    background var(--nsm-dur) var(--nsm-ease-fade);
+}
+.neu-switch-m.is-on .neu-switch-m-knob {
+  transform: translateX(0);
+}
+.neu-switch-m:active .neu-switch-m-knob {
+  width: calc(var(--nsm-h) - 2 * var(--nsm-pad) + 0.35rem);
+}
+@media (prefers-reduced-motion: reduce) {
+  .neu-switch-m-knob,
+  .neu-switch-m-icon,
+  .neu-switch-m-track {
+    transition-duration: 1ms;
+  }
+}
+
+
+/* ── Premium day/night theme toggle ─────────────────────────────────── */
+.neu-switch-p {
+  --nsp-h: 2.4rem;
+  --nsp-w: 4.6rem;
+  --nsp-pad: 0.22rem;
+  --nsp-knob: calc(var(--nsp-h) - 2 * var(--nsp-pad));
+  --nsp-travel: calc(var(--nsp-w) - var(--nsp-h));
+  --nsp-dur: 520ms;
+  --nsp-ease: cubic-bezier(0.34, 1.4, 0.36, 1);
+  --nsp-fade: 260ms;
+  --nsp-ease-fade: cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: 999px;
+  -webkit-tap-highlight-color: transparent;
+}
+.neu-switch-p:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+.neu-switch-p-track {
+  position: relative;
+  display: block;
+  height: var(--nsp-h);
+  width: var(--nsp-w);
+  border-radius: 999px;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(
+    180deg,
+    oklch(0.86 0.09 72) 0%,
+    oklch(0.78 0.13 55) 100%
+  );
+  box-shadow:
+    inset 0 2px 5px oklch(0 0 0 / 0.32),
+    inset 0 -1px 1px oklch(1 0 0 / 0.28),
+    0 1px 0 oklch(1 0 0 / 0.5);
+  transition: box-shadow var(--nsp-fade) var(--nsp-ease-fade);
+}
+/* night sky layer cross-fades over the daylight gradient */
+.neu-switch-p-sky {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  background: linear-gradient(
+    180deg,
+    oklch(0.32 0.07 265) 0%,
+    oklch(0.19 0.05 268) 100%
+  );
+  transition: opacity var(--nsp-fade) var(--nsp-ease-fade);
+}
+.neu-switch-p.is-on .neu-switch-p-sky {
+  opacity: 1;
+}
+.neu-switch-p.is-on .neu-switch-p-track {
+  box-shadow:
+    inset 0 2px 6px oklch(0 0 0 / 0.55),
+    inset 0 -1px 1px oklch(1 0 0 / 0.12),
+    0 1px 0 oklch(1 0 0 / 0.08);
+}
+/* soft light bloom that follows the knob */
+.neu-switch-p-glow {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: calc(var(--nsp-h) * 1.7);
+  width: calc(var(--nsp-h) * 1.7);
+  margin: calc(var(--nsp-h) * -0.85) 0 0 calc(var(--nsp-h) * -0.55);
+  border-radius: 999px;
+  background: radial-gradient(
+    circle,
+    oklch(1 0 0 / 0.5) 0%,
+    oklch(1 0 0 / 0) 68%
+  );
+  transform: translateX(0);
+  transition: transform var(--nsp-dur) var(--nsp-ease);
+  pointer-events: none;
+}
+.neu-switch-p.is-on .neu-switch-p-glow {
+  transform: translateX(var(--nsp-travel));
+  background: radial-gradient(
+    circle,
+    oklch(0.85 0.09 250 / 0.35) 0%,
+    oklch(0.85 0.09 250 / 0) 68%
+  );
+}
+/* Stars: two GPU-composited gradient layers that cross-fade.
+   No per-star DOM nodes, no layout/paint work — only opacity on
+   promoted layers, so the compositor handles the twinkle. */
+.neu-switch-p-stars {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--nsp-fade) var(--nsp-ease-fade);
+  contain: strict;
+}
+.neu-switch-p-stars::before,
+.neu-switch-p-stars::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-repeat: no-repeat;
+  transform: translateZ(0);
+  will-change: opacity;
+  backface-visibility: hidden;
+}
+.neu-switch-p-stars::before {
+  background-image:
+    radial-gradient(1.1px 1.1px at 18% 26%, oklch(0.99 0 0 / 0.95), transparent 100%),
+    radial-gradient(1px 1px at 44% 34%, oklch(0.99 0 0 / 0.85), transparent 100%),
+    radial-gradient(1.3px 1.3px at 68% 22%, oklch(0.99 0 0 / 0.9), transparent 100%);
+  animation: nsp-twinkle-a 3.2s ease-in-out infinite;
+}
+.neu-switch-p-stars::after {
+  background-image:
+    radial-gradient(1px 1px at 30% 62%, oklch(0.99 0 0 / 0.8), transparent 100%),
+    radial-gradient(1.2px 1.2px at 56% 72%, oklch(0.99 0 0 / 0.9), transparent 100%),
+    radial-gradient(1px 1px at 80% 58%, oklch(0.99 0 0 / 0.75), transparent 100%);
+  animation: nsp-twinkle-b 3.2s ease-in-out infinite;
+}
+.neu-switch-p.is-on .neu-switch-p-stars {
+  opacity: 1;
+  transition-delay: 120ms;
+}
+/* Pause the animation entirely while the toggle is in day mode. */
+.neu-switch-p:not(.is-on) .neu-switch-p-stars::before,
+.neu-switch-p:not(.is-on) .neu-switch-p-stars::after {
+  animation-play-state: paused;
+  will-change: auto;
+}
+@keyframes nsp-twinkle-a {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+@keyframes nsp-twinkle-b {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.neu-switch-p-knob {
+  position: absolute;
+  top: var(--nsp-pad);
+  left: var(--nsp-pad);
+  display: grid;
+  place-items: center;
+  height: var(--nsp-knob);
+  width: var(--nsp-knob);
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    oklch(1 0 0) 0%,
+    oklch(0.93 0.005 260) 100%
+  );
+  box-shadow:
+    0 1px 1px oklch(1 0 0 / 0.9) inset,
+    0 -1px 2px oklch(0 0 0 / 0.12) inset,
+    0 2px 5px oklch(0 0 0 / 0.35),
+    0 6px 12px oklch(0 0 0 / 0.18);
+  transform: translate3d(0, 0, 0) scaleX(1);
+  will-change: transform;
+  backface-visibility: hidden;
+  transition:
+    transform var(--nsp-dur) var(--nsp-ease),
+    background var(--nsp-fade) var(--nsp-ease-fade),
+    box-shadow var(--nsp-fade) var(--nsp-ease-fade);
+}
+.neu-switch-p.is-on .neu-switch-p-knob {
+  transform: translate3d(var(--nsp-travel), 0, 0) scaleX(1);
+  background: linear-gradient(
+    180deg,
+    oklch(0.96 0.008 260) 0%,
+    oklch(0.86 0.012 265) 100%
+  );
+  box-shadow:
+    0 1px 1px oklch(1 0 0 / 0.7) inset,
+    0 -1px 2px oklch(0 0 0 / 0.2) inset,
+    0 2px 6px oklch(0 0 0 / 0.5),
+    0 8px 16px oklch(0 0 0 / 0.3);
+}
+/* compositor-only squish — scaleX instead of animating width */
+.neu-switch-p:active .neu-switch-p-knob {
+  transform: translate3d(0, 0, 0) scaleX(1.12);
+  transition-duration: 160ms;
+}
+.neu-switch-p.is-on:active .neu-switch-p-knob {
+  transform: translate3d(var(--nsp-travel), 0, 0) scaleX(1.12);
+}
+.neu-switch-p-icon {
+  position: absolute;
+  height: 55%;
+  width: 55%;
+  transition:
+    opacity var(--nsp-fade) var(--nsp-ease-fade),
+    transform var(--nsp-dur) var(--nsp-ease);
+}
+.neu-switch-p-icon-sun {
+  color: oklch(0.68 0.16 55);
+}
+.neu-switch-p-icon-moon {
+  color: oklch(0.42 0.06 268);
+}
+.neu-switch-p:not(.is-on) .neu-switch-p-icon-moon,
+.neu-switch-p.is-on .neu-switch-p-icon-sun {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.5);
+}
+@media (prefers-reduced-motion: reduce) {
+  .neu-switch-p-knob,
+  .neu-switch-p-icon,
+  .neu-switch-p-glow,
+  .neu-switch-p-sky,
+  .neu-switch-p-track,
+  .neu-switch-p-stars {
+    transition-duration: 1ms !important;
+    animation: none !important;
+    will-change: auto;
+  }
+  .neu-switch-p-stars::before,
+  .neu-switch-p-stars::after {
+    animation: none !important;
+    opacity: 0.85;
+    will-change: auto;
+  }
+}
+
+
+/* ── Playful onboarding bits ─────────────────────────────────────────── */
+.filly-stickers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.filly-sticker {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--filly-on-hero);
+  background: oklch(1 0 0 / 0.16);
+  box-shadow: 0 0.4rem 1rem -0.5rem oklch(0 0 0 / 0.5);
+  backdrop-filter: blur(3px);
+  transform: translate3d(0, 0, 0) rotate(-6deg);
+  will-change: transform;
+  animation: filly-bob 7s ease-in-out infinite;
+}
+.filly-sticker:nth-child(2) {
+  transform: rotate(5deg);
+  animation-duration: 8.5s;
+}
+.filly-sticker:nth-child(3) {
+  transform: rotate(-3deg);
+  animation-duration: 9.5s;
+}
+@keyframes filly-bob {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-6deg);
+  }
+  50% {
+    transform: translate3d(-0.4rem, -0.7rem, 0) rotate(4deg);
+  }
+}
+
+.filly-logo-pop {
+  animation: filly-pop 0.75s cubic-bezier(0.34, 1.56, 0.36, 1) both;
+}
+@keyframes filly-pop {
+  0% {
+    transform: scale(0.5) rotate(-14deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.filly-chip {
+  animation: filly-pop 0.6s cubic-bezier(0.34, 1.56, 0.36, 1) both;
+}
+
+/* hand-drawn underline under the accent line */
+.filly-squiggle {
+  position: relative;
+  display: inline-block;
+  font-style: italic;
+}
+.filly-squiggle::after {
+  content: "";
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  bottom: -0.28em;
+  height: 0.42em;
+  background: no-repeat center/100% 100%
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8C22 3 44 10 62 6s38-6 56-1' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' opacity='0.85'/%3E%3C/svg%3E");
+  transform-origin: left center;
+  animation: filly-draw 0.85s 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes filly-draw {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* mini auto-filling reservation card */
+.filly-demo {
+  border-radius: 1rem;
+  padding: 0.55rem;
+  background: oklch(1 0 0 / 0.14);
+  box-shadow:
+    inset 0 1px 0 oklch(1 0 0 / 0.25),
+    0 0.8rem 2rem -1rem oklch(0 0 0 / 0.6);
+  backdrop-filter: blur(4px);
+  animation: filly-pop 0.6s 0.15s cubic-bezier(0.34, 1.4, 0.36, 1) both;
+}
+.filly-demo-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.28rem;
+  padding: 0 0.3rem 0.45rem;
+}
+.filly-demo-bar span {
+  height: 0.4rem;
+  width: 0.4rem;
+  border-radius: 999px;
+  background: oklch(1 0 0 / 0.5);
+}
+.filly-demo-bar em {
+  margin-left: auto;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.5rem;
+  font-style: normal;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: oklch(1 0 0 / 0.65);
+}
+.filly-demo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.32rem 0.4rem;
+  border-radius: 0.6rem;
+  font-size: 0.7rem;
+  color: var(--filly-on-hero);
+  animation: filly-fill 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.filly-demo-row + .filly-demo-row {
+  margin-top: 0.2rem;
+}
+.filly-demo-key {
+  height: 0.35rem;
+  width: 1.6rem;
+  border-radius: 999px;
+  background: oklch(1 0 0 / 0.45);
+  flex: none;
+}
+.filly-demo-val {
+  flex: 1;
+  font-family: var(--font-mono, monospace);
+  letter-spacing: 0.02em;
+}
+.filly-demo-tick {
+  font-size: 0.65rem;
+  color: oklch(0.92 0.13 150);
+}
+@keyframes filly-fill {
+  from {
+    opacity: 0;
+    transform: translate3d(-0.6rem, 0, 0);
+    background: oklch(1 0 0 / 0.28);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    background: oklch(1 0 0 / 0);
+  }
+}
+
+/* bouncy progress beads */
+.filly-bead {
+  transition:
+    width 0.45s cubic-bezier(0.34, 1.5, 0.36, 1),
+    background-color 0.35s ease;
+}
+.filly-bead.is-active {
+  animation: filly-bead-pop 0.5s cubic-bezier(0.34, 1.6, 0.36, 1);
+}
+@keyframes filly-bead-pop {
+  50% {
+    transform: scaleY(1.9);
+  }
+}
+
+/* tiny confetti burst on the CTA */
+.filly-confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.filly-confetti i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 0.32rem;
+  width: 0.32rem;
+  border-radius: 1px;
+  background: var(--filly-on-hero);
+  opacity: 0;
+  transform: translate3d(0, 0, 0);
+  animation: filly-confetti 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--i) * 12ms);
+  --ang: calc(var(--i) * 45deg);
+}
+.filly-confetti i:nth-child(even) {
+  background: oklch(0.95 0.14 90);
+}
+@keyframes filly-confetti {
+  0% {
+    opacity: 1;
+    transform: rotate(var(--ang)) translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(var(--ang)) translate3d(0, -3.2rem, 0) scale(0.4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filly-sticker,
+  .filly-logo-pop,
+  .filly-chip,
+  .filly-squiggle::after,
+  .filly-demo,
+  .filly-demo-row,
+  .filly-bead.is-active,
+  .filly-confetti i {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+  .filly-confetti {
+    display: none;
+  }
+}
+
+

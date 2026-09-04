@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="theme-color" content="#151311" />
+    <title>Reset your password | Filly AI</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #fffaf6;
+        --muted: #b9aea8;
+        --faint: #7f746e;
+        --bg: #151311;
+        --panel: #1d1917;
+        --panel-2: #27211e;
+        --line: rgba(255, 244, 236, 0.14);
+        --accent: #de7857;
+        --accent-bright: #f08d6c;
+        --accent-ink: #17110f;
+        --success: #45cd8a;
+        --error: #ff7676;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+          radial-gradient(circle at 50% 5%, rgba(222, 120, 87, 0.18), transparent 34%), var(--bg);
+        background-size:
+          48px 48px,
+          48px 48px,
+          auto,
+          auto;
+        color: var(--ink);
+        font-family:
+          Inter,
+          ui-sans-serif,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+      .shell {
+        width: min(100%, 520px);
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 0 18px;
+      }
+      .brand img {
+        width: 38px;
+        height: 38px;
+        display: block;
+      }
+      .brand strong {
+        display: block;
+        font-size: 18px;
+        letter-spacing: -0.2px;
+      }
+      .brand span {
+        display: block;
+        margin-top: 3px;
+        color: var(--faint);
+        font:
+          700 9px/1.2 ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          monospace;
+        letter-spacing: 1.7px;
+        text-transform: uppercase;
+      }
+      .card {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent 35%), var(--panel);
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.42);
+      }
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 4px;
+        background: var(--accent);
+      }
+      .inner {
+        padding: 38px 40px 40px;
+      }
+      .eyebrow {
+        color: var(--accent);
+        font:
+          750 11px/1.2 ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          monospace;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+      h1 {
+        margin: 13px 0 13px;
+        font-size: clamp(31px, 7vw, 42px);
+        line-height: 1.02;
+        letter-spacing: -1.5px;
+      }
+      .intro {
+        margin: 0 0 28px;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.65;
+      }
+      label {
+        display: block;
+        margin: 0 0 7px;
+        color: var(--muted);
+        font:
+          750 10px/1.2 ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          monospace;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+      }
+      .field {
+        position: relative;
+        margin-bottom: 16px;
+      }
+      input {
+        width: 100%;
+        min-height: 52px;
+        padding: 14px 48px 14px 15px;
+        border: 1px solid var(--line);
+        border-radius: 0;
+        background: var(--panel-2);
+        color: var(--ink);
+        font: 600 15px/1.2 inherit;
+        outline: none;
+        transition:
+          border-color 0.18s,
+          box-shadow 0.18s;
+      }
+      input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(222, 120, 87, 0.15);
+      }
+      .reveal {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        width: 32px;
+        height: 32px;
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .requirements {
+        margin: -5px 0 22px;
+        color: var(--faint);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+      .submit {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        min-height: 54px;
+        padding: 15px 18px;
+        border: 0;
+        background: var(--accent);
+        color: var(--accent-ink);
+        font:
+          850 12px/1.2 ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          monospace;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition:
+          background 0.18s,
+          transform 0.18s;
+      }
+      .submit:hover {
+        background: var(--accent-bright);
+        transform: translateY(-1px);
+      }
+      .submit:disabled {
+        cursor: wait;
+        opacity: 0.58;
+        transform: none;
+      }
+      .message {
+        display: none;
+        margin: 0 0 20px;
+        padding: 13px 15px;
+        border-left: 3px solid;
+        font-size: 13px;
+        line-height: 1.55;
+      }
+      .message.error {
+        display: block;
+        background: rgba(255, 118, 118, 0.08);
+        border-color: var(--error);
+        color: #ffaaaa;
+      }
+      .message.success {
+        display: block;
+        background: rgba(69, 205, 138, 0.08);
+        border-color: var(--success);
+        color: #85e9b7;
+      }
+      .done {
+        display: none;
+        padding: 8px 0 4px;
+      }
+      .done-mark {
+        display: grid;
+        place-items: center;
+        width: 58px;
+        height: 58px;
+        margin-bottom: 22px;
+        border: 1px solid rgba(69, 205, 138, 0.5);
+        background: rgba(69, 205, 138, 0.08);
+        color: var(--success);
+        font-size: 27px;
+        font-weight: 900;
+      }
+      .done h2 {
+        margin: 0 0 10px;
+        font-size: 30px;
+        letter-spacing: -1px;
+      }
+      .done p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.65;
+      }
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 17px 40px;
+        border: 1px solid var(--line);
+        border-top: 0;
+        background: rgba(21, 19, 17, 0.72);
+        color: var(--faint);
+        font:
+          700 10px/1.4 ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          monospace;
+        letter-spacing: 0.7px;
+        text-transform: uppercase;
+      }
+      .footer a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+      .footer a:hover {
+        color: var(--ink);
+      }
+      @media (max-width: 560px) {
+        body {
+          padding: 14px;
+          place-items: start center;
+        }
+        .shell {
+          margin-top: 18px;
+        }
+        .inner {
+          padding: 30px 24px 32px;
+        }
+        .footer {
+          padding: 16px 24px;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <div class="brand">
+        <img src="/favicon.svg" alt="" />
+        <div><strong>Filly AI</strong><span>Account security</span></div>
+      </div>
+
+      <section class="card">
+        <div class="inner">
+          <div id="resetContent">
+            <div class="eyebrow">Secure password reset</div>
+            <h1>Choose a new password.</h1>
+            <p class="intro">
+              Use a unique password with at least eight characters. This page only updates your
+              Filly account password.
+            </p>
+            <div id="message" class="message" role="status" aria-live="polite"></div>
+            <form id="resetForm">
+              <div class="field">
+                <label for="password">New password</label>
+                <input
+                  id="password"
+                  type="password"
+                  minlength="8"
+                  autocomplete="new-password"
+                  required
+                />
+                <button
+                  class="reveal"
+                  type="button"
+                  aria-label="Show password"
+                  data-target="password"
+                >
+                  ◉
+                </button>
+              </div>
+              <div class="field">
+                <label for="confirmPassword">Confirm new password</label>
+                <input
+                  id="confirmPassword"
+                  type="password"
+                  minlength="8"
+                  autocomplete="new-password"
+                  required
+                />
+                <button
+                  class="reveal"
+                  type="button"
+                  aria-label="Show password"
+                  data-target="confirmPassword"
+                >
+                  ◉
+                </button>
+              </div>
+              <p class="requirements">At least 8 characters. A longer, unique password is safer.</p>
+              <button id="submitButton" class="submit" type="submit">
+                <span>Update password</span><span>→</span>
+              </button>
+            </form>
+          </div>
+          <div id="doneContent" class="done" role="status">
+            <div class="done-mark">✓</div>
+            <div class="eyebrow">Password updated</div>
+            <h2>You’re all set.</h2>
+            <p>
+              Close this page, return to the Filly extension, and sign in with your new password.
+            </p>
+          </div>
+        </div>
+      </section>
+      <footer class="footer">
+        <span>Filly AI · Secure account access</span
+        ><a href="mailto:support@getfillyai.com">Need help?</a>
+      </footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+      (() => {
+        const SUPABASE_URL = "https://ujljfqeslvafblgksutw.supabase.co";
+        const SUPABASE_ANON =
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYXNlIiwicmVmIjoidWpsamZxZXNsdmFmYmxna3N1dHciLCJyb2xlIjoiYW5vbiIsImlhdCI6MTc3NDIxNDYyMiwiZXhwIjoyMDg5NzkyNjIyfQ.jPx5C0Q-_S-s681UwGF25cFJhNevhEdy0qRqRpXk3Pw";
+        const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, {
+          auth: { detectSessionInUrl: true, persistSession: false },
+        });
+        const form = document.getElementById("resetForm");
+        const message = document.getElementById("message");
+        const submit = document.getElementById("submitButton");
+
+        const showMessage = (text, kind = "error") => {
+          message.textContent = text;
+          message.className = `message ${kind}`;
+        };
+
+        const hash = new URLSearchParams(location.hash.slice(1));
+        const query = new URLSearchParams(location.search);
+        const linkError = hash.get("error_description") || query.get("error_description");
+        if (linkError) showMessage(linkError.replace(/\+/g, " "));
+
+        document.querySelectorAll(".reveal").forEach((button) =>
+          button.addEventListener("click", () => {
+            const input = document.getElementById(button.dataset.target);
+            const show = input.type === "password";
+            input.type = show ? "text" : "password";
+            button.setAttribute("aria-label", show ? "Hide password" : "Show password");
+          }),
+        );
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const password = document.getElementById("password").value;
+          const confirmation = document.getElementById("confirmPassword").value;
+          if (password.length < 8)
+            return showMessage("Use at least eight characters for your new password.");
+          if (password !== confirmation) return showMessage("The two passwords do not match.");
+
+          submit.disabled = true;
+          submit.querySelector("span").textContent = "Updating…";
+          const { data: sessionData } = await client.auth.getSession();
+          if (!sessionData.session) {
+            showMessage(
+              "This reset link is invalid or has expired. Return to Filly and request a new link.",
+            );
+            submit.disabled = false;
+            submit.querySelector("span").textContent = "Update password";
+            return;
+          }
+          const { error } = await client.auth.updateUser({ password });
+          if (error) {
+            showMessage(error.message);
+            submit.disabled = false;
+            submit.querySelector("span").textContent = "Update password";
+            return;
+          }
+          await client.auth.signOut({ scope: "local" });
+          document.getElementById("resetContent").style.display = "none";
+          document.getElementById("doneContent").style.display = "block";
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 375" role="img" aria-labelledby="title desc">
+  <title id="title">Filly</title>
+  <desc id="desc">Filly F mark in a circular terracotta badge</desc>
+  <defs>
+    <radialGradient id="badge" cx="38%" cy="28%" r="78%">
+      <stop offset="0" stop-color="#55443d"/>
+      <stop offset="1" stop-color="#2b2827"/>
+    </radialGradient>
+    <filter id="shadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#171312" flood-opacity=".38"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <circle cx="187.5" cy="187.5" r="174" fill="url(#badge)" stroke="#d97757" stroke-width="8"/>
+    <circle cx="187.5" cy="187.5" r="154" fill="#493a34"/>
+    <g fill="#d97757">
+      <rect x="87" y="72" width="56" height="232" rx="24"/>
+      <rect x="155" y="72" width="128" height="58" rx="24"/>
+      <rect x="155" y="163" width="95" height="58" rx="24"/>
+    </g>
+  </g>
+</svg>

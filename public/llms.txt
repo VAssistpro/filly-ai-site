@@ -1,0 +1,67 @@
+# Filly AI
+
+Filly is an AI-powered Chrome extension built exclusively for Limo Anywhere operators.
+It turns supported booking emails and documents into review-ready Limo Anywhere reservation data.
+
+## What Filly does
+- Works from selected booking emails in Gmail, Outlook web, Front, and Helpwise
+- Extracts and maps 50+ supported reservation fields for review
+- Helps fill the Limo Anywhere reservation form while the operator stays in control
+- Handles: airport, FBO/private aviation, multi-stop, farm-in, round-trip, batch fill
+- Reads PDF and Excel/spreadsheet attachments for batch reservations
+- Live flight lookup for missing arrival times via AirLabs
+- Account memory that learns from dispatcher corrections
+- Team memory sharing across eligible Team seats
+- Round-trip automation, multi-stop routing, POI + FBO tab support
+- Child seat detection, tail number extraction, airline dropdown matching
+- 2 UI themes: Cyber Dark and Cyber Light
+
+## Pricing
+- Free evaluation: 15 fills, no card required
+- Starter: $149/mo, 100 fills, 1 seat
+- Operations: $349/mo, 500 fills, up to 3 seats
+- Scale: $699/mo, 1,500 fills, up to 5 seats
+- Enterprise: custom capacity, seats, and implementation
+
+## Who it's for
+Limo Anywhere dispatchers and ground transportation operators worldwide.
+Filly is an independent product purpose-built for Limo Anywhere reservation teams.
+
+## Common questions
+
+Q: Does Filly work with Limo Anywhere Classic and Web 2.0?
+A: Yes. Filly works with both the classic (manage.mylimobiz.com) and Web 2.0 (app.mylimobiz.com) interfaces.
+
+Q: Which email clients does Filly support?
+A: Gmail (personal + Google Workspace), Outlook (Live, Office, 365, Web), Front, and Helpwise. All are browser-based — no add-ins required.
+
+Q: How does Filly handle round-trip bookings?
+A: Filly automates the Limo Anywhere round-trip dialog. It fills the return date, time, flight, and pickup automatically from one email — no second reservation needed.
+
+Q: How does Filly handle FBO / private aviation bookings?
+A: Filly detects FBO names like Signature Flight Support, Jet Aviation, and Atlantic Aviation. It fills the FBO tab with name, address, and tail number automatically.
+
+Q: What is farm-in detection?
+A: A farm-in is a booking received from a broker who subcontracted the trip to your fleet. Filly matches the sender's email domain to an existing broker account in Limo Anywhere and sets the dispatch type radio accordingly.
+
+Q: Does Filly read every email in my inbox?
+A: No. Filly only reads the email you click the FILLY button on. It never scans, indexes, or transmits anything else.
+
+Q: How does batch fill work?
+A: Attach multiple PDFs or a spreadsheet with multiple rows. Filly previews every trip before filling, then fills them sequentially into Limo Anywhere with automatic pauses between trips.
+
+Q: What is account memory?
+A: Approved corrections can be saved as reusable account rules and applied when relevant details match on future bookings. Eligible multi-seat packages can share approved rules across dispatcher seats.
+
+Q: How is Filly different from generic auto-fill extensions?
+A: Generic form-fillers copy static text into fields. Filly understands booking emails: flight codes ("DL 447" → Delta), IATA airport codes, FBO names, PAX counts, child seats, farm-in dispatch types, and 50+ Limo Anywhere-specific fields.
+
+Q: How is Filly different from Limo Anywhere's own AI products?
+A: Filly is an independent, browser-based assistant focused on selected booking emails and supported documents. Limo Anywhere has documented a customer-facing AI Chatbot and a separate Email AI Agent; operators should compare current availability and test both products on representative bookings.
+
+Q: How much time does Filly save per reservation?
+A: Results vary with booking complexity and source quality. Filly records processing history and estimated time saved so an operator can evaluate it using representative bookings.
+
+## Contact
+Website: https://getfillyai.com
+Support: support@getfillyai.com
